@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "naumovs.color-highlight",
+    "kisstkondoros.vscode-gutter-preview",
+    "2gua.rainbow-brackets",
+    "bradlc.vscode-tailwindcss",
+    "meganrogge.template-string-converter",
+    "eamodio.gitlens",
+    "dsznajder.es7-react-js-snippets",
+    "mquandalle.graphql"
+  ]
+}

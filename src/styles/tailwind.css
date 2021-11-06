@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+.cookie-though {
+  /* The colors used to style the modal */
+  --ct-primary-400: #18181b;
+  --ct-primary-300: #71717a;
+  --ct-primary-200: #d4d4d8;
+  --ct-primary-100: #f4f4f5;
+
+  /* The colors used to style a policy */
+  --ct-policy-enabled: var(--ct-primary-100);
+  --ct-policy-text-enabled: var(--ct-primary-400);
+
+  /* The colors used to style the sliders */
+  --ct-slider-enabled-primary: #71717a;
+  --ct-slider-enabled-secondary: #a1a1aa;
+  --ct-primary-font: 'Montserrat';
+  --ct-secondary-font: 'Montserrat';
+}
+
+@layer base {
+  ::selection {
+    @apply text-gray-50 bg-blue-800;
+  }
+  img {
+    @apply select-none;
+  }
+}
+
+@layer components {
+  .navLink {
+    @apply relative;
+  }
+  .navLink::before {
+    content: ' ';
+    @apply transition motion-reduce:transition-none duration-300;
+    @apply block absolute bottom-0 inset-x-0 h-0.5 bg-current;
+    @apply origin-right;
+    transform: scaleX(0);
+  }
+
+  .navLink:focus::before,
+  .navLink:hover::before {
+    @apply origin-left;
+    transform: scaleX(1);
+  }
+
+  .header {
+    min-height: 97vh;
+    max-height: 1080px;
+  }
+
+  .H2:before {
+    content: '';
+    @apply h-3;
+    @apply absolute;
+    @apply bottom-0;
+    @apply w-1/3;
+    min-width: 1.5em;
+    @apply border-b-3;
+    @apply border-current;
+    @apply left-0;
+  }
+
+  .focus-custom {
+    @apply focus:outline-none;
+    @apply focus-visible:ring-2;
+    @apply ring-blue-500;
+    @apply rounded;
+  }
+}
