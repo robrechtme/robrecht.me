@@ -2,17 +2,17 @@
 import '../styles/tailwind.css';
 
 import { AnimatePresence } from 'framer-motion';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 import { renderMetaTags } from 'react-datocms';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
-import type { AppProps } from 'next/app';
 
-import Analytics from '../components/molecules/Analytics';
 import Container from '../components/atoms/Container';
-import Footer from '../components/organisms/Footer';
 import DatoDefaultSeo from '../components/atoms/Seo/DefaultSeo';
+import Analytics from '../components/molecules/Analytics';
+import Footer from '../components/organisms/Footer';
 import cookieConfig from '../config/cookieConfig';
 
 const App = ({ Component, pageProps, router }: AppProps) => (

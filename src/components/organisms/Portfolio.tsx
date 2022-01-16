@@ -2,9 +2,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 
 import { HomePage } from '../../lib/queries/homePage';
-import Card from '../molecules/Card';
 import Header from '../atoms/H2';
 import NavLink from '../atoms/NavLink';
+import Card from '../molecules/Card';
 
 interface Props {
   projects: HomePage['projects'];

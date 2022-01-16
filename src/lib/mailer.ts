@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
+
 import { createHTML } from './template';
 
 const FOOTER = 'Robrecht Meersman, Vosselarestraat 61, 9850 Landegem<br>BTW BE 0761 397 342';

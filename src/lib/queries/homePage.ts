@@ -1,4 +1,5 @@
 import { Global, Project } from '../types';
+
 import { GLOBAL_PART, IMAGE_PART } from './fragments';
 
 export type HomePage = Global & {
