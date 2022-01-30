@@ -12,11 +12,7 @@ const Content: React.FC<Props> = ({ content }) => (
       switch (block._modelApiKey) {
         case 'image':
           return (
-            <Img
-              key={block.id}
-              data={block.image.responsiveImage}
-              className="w-full my-4 shadow-xl"
-            />
+            <Img key={block.id} data={block.image.responsiveImage} className="w-full shadow-xl" />
           );
         case 'image_col':
           return (

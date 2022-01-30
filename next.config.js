@@ -6,11 +6,6 @@ module.exports = {
     });
     return config;
   },
-  images: {
-    disableStaticImages: true,
-    loader: 'imgix',
-    path: 'https://www.datocms-assets.com/',
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
