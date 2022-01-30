@@ -4,8 +4,8 @@ import Link from 'next/link';
 import React from 'react';
 
 import { Project } from '../../lib/types';
-import Img from '../atoms/Image';
 import Header from '../atoms/H2';
+import Img from '../atoms/Image';
 import NavLink from '../atoms/NavLink';
 
 interface Props {

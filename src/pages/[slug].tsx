@@ -1,19 +1,19 @@
-import { motion, useReducedMotion } from 'framer-motion';
-import parse from 'html-react-parser';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { ArticleJsonLd, NextSeo } from 'next-seo';
-import React, { useEffect } from 'react';
+import { motion } from "framer-motion";
+import parse from "html-react-parser";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { ArticleJsonLd, NextSeo } from "next-seo";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
-import Logo from '../assets/logo.svg';
-import Back from '../assets/right-arrow.svg';
-import Content from '../components/organisms/Blocks';
-import Header from '../components/atoms/H2';
-import query from '../lib/datocms';
-import { PROJECT, ProjectPage } from '../lib/queries/project';
-import { PROJECT_SLUGS, ProjectSlugs } from '../lib/queries/projectSlugs';
-import { escapeDoubleQuotes } from '../util/string';
+import Logo from "../assets/logo.svg";
+import Back from "../assets/right-arrow.svg";
+import Header from "../components/atoms/H2";
+import Content from "../components/organisms/Blocks";
+import query from "../lib/datocms";
+import { PROJECT, ProjectPage } from "../lib/queries/project";
+import { PROJECT_SLUGS, ProjectSlugs } from "../lib/queries/projectSlugs";
+import { escapeDoubleQuotes } from "../util/string";
 
 const Project: React.FC<ProjectPage> = ({ project }) => {
   const router = useRouter();
@@ -43,7 +43,7 @@ const Project: React.FC<ProjectPage> = ({ project }) => {
                 images={[project.seo.image.url]}
                 datePublished={project.publishedAt}
                 dateModified={project.updatedAt}
-                authorName={['Robrecht Meersman']}
+                authorName={["Robrecht Meersman"]}
                 publisherName="Robrecht Meersman"
                 publisherLogo="https://www.datocms-assets.com/37631/1610276111-logowhitetrans.png" // FIXME
                 description={escapeDoubleQuotes(project.seo.description)}
@@ -66,12 +66,14 @@ const Project: React.FC<ProjectPage> = ({ project }) => {
               <div>
                 {project.keywords && (
                   <p className="uppercase tracking-wide text-sm  text-gray-900">
-                    {project.keywords.join(', ')}
+                    {project.keywords.join(", ")}
                   </p>
                 )}
               </div>
               <div className="mt-4 ">
-                <p className="prose text-gray-900">{parse(project.description)}</p>
+                <p className="prose text-gray-900">
+                  {parse(project.description)}
+                </p>
               </div>
             </header>
           </div>
@@ -79,7 +81,7 @@ const Project: React.FC<ProjectPage> = ({ project }) => {
             className="flex-1 sm:py-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 1] }}
-            transition={{ duration: 0.4, ease: 'easeInOut', delay: 0.5 }}
+            transition={{ duration: 0.4, ease: "easeInOut", delay: 0.5 }}
           >
             <Content content={project.content} />
           </motion.main>
@@ -89,7 +91,10 @@ const Project: React.FC<ProjectPage> = ({ project }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ preview, params: { slug } }) => {
+export const getStaticProps: GetStaticProps = async ({
+  preview,
+  params: { slug },
+}) => {
   const data = await query<ProjectPage>({
     query: PROJECT,
     preview,

@@ -1,4 +1,5 @@
 import { Global } from '../types';
+
 import { GLOBAL_PART } from './fragments';
 
 export type ErrorPage = Global;

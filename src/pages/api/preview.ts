@@ -1,5 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
+
+import { NextApiRequest, NextApiResponse } from 'next';
 
 // eslint-disable-next-line consistent-return
 export default async function preview(req: NextApiRequest, res: NextApiResponse): Promise<void> {
