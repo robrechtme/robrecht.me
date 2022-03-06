@@ -1,17 +1,20 @@
-import { Global, Project } from '../types';
+import { Global, Project } from "../types";
 
-import { GLOBAL_PART, IMAGE_PART } from './fragments';
+import { GLOBAL_PART, IMAGE_PART } from "./fragments";
 
 export type HomePage = Global & {
   projects: Array<
-    Pick<Project, 'id' | 'keywords' | 'slug' | 'title' | 'thumbnail' | 'description'>
+    Pick<
+      Project,
+      "id" | "keywords" | "slug" | "title" | "thumbnail" | "description"
+    >
   >;
 };
 
 export const HOME_PAGE = `
 query HomePage {
   ${GLOBAL_PART}
-  projects: allProjects(orderBy: _createdAt_ASC) {
+  projects: allProjects {
     id
     keywords
     slug
