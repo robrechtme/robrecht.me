@@ -30,10 +30,9 @@ Hi! Welcome to the source code of my personal website. This repo is not really m
 ### Built With
 
 - [Next.js](https://nextjs.org/) - JavaScript framework
-- [TailwindCSS](https://tailwindcss.com/) - CSS framework
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
 - [DatoCMS](https://www.datocms.com/) - Headless CMS
 - [Framer Motion](https://www.framer.com/motion/) - React animation framework
-- [Cookie Though](https://cookiethough.dev/) - Cookie consent library
 
 <!-- GETTING STARTED -->
 

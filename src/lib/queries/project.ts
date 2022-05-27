@@ -1,56 +1,61 @@
-import { Global, Project } from "../types";
+import { gql } from 'graphql-tag';
 
-import { GLOBAL_PART, IMAGE_PART } from "./fragments";
+import { GLOBAL_FIELDS } from './fragments';
 
-export type ProjectPage = Global & {
-  project: Project;
-};
-
-export const PROJECT = `
-query Project($slug: String) {
-  ${GLOBAL_PART}
-  project(filter: {slug: {eq: $slug}}) {
-    updatedAt: _updatedAt
-    publishedAt: _publishedAt
-    id
-    slug
-    content {
-      ... on ImageRecord {
-        _modelApiKey
-        id
-        image {
-          responsiveImage {
-            ${IMAGE_PART}
-          }
-        }
-      }
-      ... on ImageColRecord {
-        _modelApiKey
-        id
-        images {
+export const PROJECT_PAGE_QUERY = gql`
+  ${GLOBAL_FIELDS}
+  query ProjectPage($slug: String) {
+    ...globalFields
+    project(filter: { slug: { eq: $slug } }) {
+      updatedAt: _updatedAt
+      publishedAt: _publishedAt
+      id
+      slug
+      content {
+        ... on ImageRecord {
+          __typename
           id
-          responsiveImage {
-            ${IMAGE_PART}
+          image {
+            responsiveImage {
+              ...responsiveImageFields
+            }
           }
         }
+        ... on ImageColRecord {
+          __typename
+          id
+          images {
+            id
+            responsiveImage {
+              ...responsiveImageFields
+            }
+          }
+        }
+        ... on TextRecord {
+          __typename
+          id
+          text(markdown: true)
+        }
       }
-      ... on TextRecord {
-        _modelApiKey
-        id
-        text(markdown: true)
-      }
-    }
-    description(markdown: true)
-    title
-    keywords
-    seo {
-      description
+      description(markdown: true)
       title
-      twitterCard
-      image {
-        url
+      keywords
+      seo {
+        description
+        title
+        twitterCard
+        image {
+          url
+        }
       }
     }
   }
-}
+`;
+
+export const PROJECT_SLUGS_QUERY = gql`
+  query ProjectSlugs {
+    projects: allProjects {
+      slug
+    }
+  }
 `;

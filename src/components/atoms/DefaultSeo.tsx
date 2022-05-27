@@ -1,5 +1,4 @@
 import { DefaultSeo } from 'next-seo';
-import React from 'react';
 
 interface Props {
   globalSeo: {
@@ -21,7 +20,7 @@ interface Props {
   };
 }
 
-const DatoDefaultSeo: React.FC<Props> = ({ globalSeo }) => {
+const DatoDefaultSeo = ({ globalSeo }: Props) => {
   if (!globalSeo) {
     return null;
   }

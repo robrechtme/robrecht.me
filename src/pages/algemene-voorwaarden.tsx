@@ -2,30 +2,33 @@ import { motion } from 'framer-motion';
 import parse from 'html-react-parser';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import React from 'react';
 
-import Logo from '../assets/logo.svg';
-import Back from '../assets/right-arrow.svg';
-import query from '../lib/datocms';
-import { TERMS_AND_CONDITIONS, TermsAndConditions } from '../lib/queries/termsAndConditions';
+import Logo from 'components/atoms/icons/logo';
+import Back from 'components/atoms/icons/right-arrow';
+import { query } from 'lib/datocms';
+import { TERMS_AND_CONDITIONS_QUERY } from 'lib/queries/termsAndConditions';
+import { TermsAndConditionsQuery } from 'lib/types';
 
-const TermsAndConditionsPage: React.FC<TermsAndConditions> = ({ page }) => (
+const TermsAndConditionsPage = ({ page }: TermsAndConditionsQuery) => (
   <>
-    <Link href="/">
+    <Link href='/'>
       <a>
-        <Logo className="h-6 mb-2 mt-8" />
+        <Logo className='h-6 mb-2 mt-8' />
       </a>
     </Link>
-    <motion.article className="my-4 relative" exit={{ transition: { duration: 0 } }}>
-      <Link href="/">
+    <motion.article
+      className='my-4 relative'
+      exit={{ transition: { duration: 0 } }}
+    >
+      <Link href='/'>
         <a
-          aria-label="Vorige"
-          className="hidden 2xl:block opacity-25 hover:opacity-50 transition hover:bg-gray-200 rounded-full mt-1 absolute top-0 -left-12"
+          aria-label='Vorige'
+          className='hidden 2xl:block opacity-25 hover:opacity-50 transition hover:bg-gray-200 rounded-full mt-1 absolute top-0 -left-12'
         >
-          <Back className=" h-6 w-6 m-1 transform rotate-180 -left-full" />
+          <Back className=' h-6 w-6 m-1 transform rotate-180 -left-full' />
         </a>
       </Link>
-      <h1 className="font-bold text-3xl">Algemene voorwaarden</h1>
+      <h1 className='font-bold text-3xl'>Algemene voorwaarden</h1>
       <small>
         Laatst gewijzigd op{' '}
         <time>
@@ -39,22 +42,24 @@ const TermsAndConditionsPage: React.FC<TermsAndConditions> = ({ page }) => (
           })}
         </time>
       </small>
-      <div className="prose mt-8 ">{parse(page.content)}</div>
+      <div className='prose mt-8 '>{parse(page.content)}</div>
     </motion.article>
   </>
 );
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {
-  const data = await query<TermsAndConditions>({
-    query: TERMS_AND_CONDITIONS,
-    preview,
-  });
+  const data = await query<TermsAndConditionsQuery>(
+    TERMS_AND_CONDITIONS_QUERY,
+    {
+      preview,
+    }
+  );
   return {
     props: {
       ...data,
       preview: Boolean(preview),
     },
-    revalidate: 1,
+    revalidate: 60 * 60,
   };
 };
 

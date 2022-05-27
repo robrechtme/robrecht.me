@@ -3,29 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.grecaptcha-badge {
-  visibility: hidden;
-}
-
-.cookie-though {
-  /* The colors used to style the modal */
-  --ct-primary-400: #18181b;
-  --ct-primary-300: #71717a;
-  --ct-primary-200: #d4d4d8;
-  --ct-primary-100: #f4f4f5;
-
-  /* The colors used to style a policy */
-  --ct-policy-enabled: var(--ct-primary-100);
-  --ct-policy-text-enabled: var(--ct-primary-400);
-
-  /* The colors used to style the sliders */
-  --ct-slider-enabled-primary: #71717a;
-  --ct-slider-enabled-secondary: #a1a1aa;
-  --ct-primary-font: 'Montserrat';
-  --ct-secondary-font: 'Montserrat';
-}
-
 @layer base {
+  .grecaptcha-badge {
+    visibility: hidden;
+  }
   ::selection {
     @apply text-gray-50 bg-blue-800;
   }
