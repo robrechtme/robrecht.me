@@ -3,10 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 @layer base {
-  .grecaptcha-badge {
-    visibility: hidden;
-  }
+
   ::selection {
     @apply text-gray-50 bg-blue-800;
   }
