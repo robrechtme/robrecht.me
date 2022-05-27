@@ -45,7 +45,7 @@ const App = ({ Component, pageProps, router }: AppProps) => (
       <Container dark={pageProps.dark} key={router.asPath}>
         <DatoDefaultSeo globalSeo={pageProps.site?.globalSeo} />
         <Component {...pageProps} />
-        {pageProps.global && <Footer {...pageProps.global} />}
+        <Footer global={pageProps.global} />
       </Container>
     </AnimatePresence>
   </GoogleReCaptchaProvider>

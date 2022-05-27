@@ -1,2 +1,4 @@
 export * from './home';
-export * from './404';
+export * from './error';
+export * from './project';
+export * from './termsAndConditions';

@@ -185,12 +185,9 @@ export interface GlobalModelLegalField {
 /** Record of type Global settings (global) */
 export interface GlobalRecord {
   __typename: 'GlobalRecord';
-  _allAboutLocales: Maybe<Array<Maybe<StringMultiLocaleField>>>;
-  _allSeoLocales: Maybe<Array<Maybe<SeoFieldMultiLocaleField>>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
-  _locales: Array<SiteLocale>;
   _modelApiKey: Scalars['String'];
   _publicationScheduledAt: Maybe<Scalars['DateTime']>;
   _publishedAt: Maybe<Scalars['DateTime']>;
@@ -199,57 +196,16 @@ export interface GlobalRecord {
   _status: ItemStatus;
   _unpublishingScheduledAt: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  about: Maybe<Scalars['String']>;
-  copyright: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
-  hero: Maybe<FileField>;
-  hq: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
   legal: Maybe<GlobalModelLegalField>;
-  preview: Maybe<Scalars['JsonField']>;
-  seo: Maybe<SeoField>;
   socials: Maybe<Scalars['JsonField']>;
   updatedAt: Scalars['DateTime'];
-  vat: Maybe<Scalars['String']>;
-}
-
-
-/** Record of type Global settings (global) */
-export interface GlobalRecord_AllAboutLocalesArgs {
-  locale: InputMaybe<SiteLocale>;
-  markdown: InputMaybe<Scalars['Boolean']>;
-}
-
-
-/** Record of type Global settings (global) */
-export interface GlobalRecord_AllSeoLocalesArgs {
-  fallbackLocales: InputMaybe<Array<SiteLocale>>;
-  locale: InputMaybe<SiteLocale>;
 }
 
 
 /** Record of type Global settings (global) */
 export interface GlobalRecord_SeoMetaTagsArgs {
-  locale: InputMaybe<SiteLocale>;
-}
-
-
-/** Record of type Global settings (global) */
-export interface GlobalRecordAboutArgs {
-  locale: InputMaybe<SiteLocale>;
-  markdown: InputMaybe<Scalars['Boolean']>;
-}
-
-
-/** Record of type Global settings (global) */
-export interface GlobalRecordHqArgs {
-  markdown: InputMaybe<Scalars['Boolean']>;
-}
-
-
-/** Record of type Global settings (global) */
-export interface GlobalRecordSeoArgs {
-  fallbackLocales: InputMaybe<Array<SiteLocale>>;
   locale: InputMaybe<SiteLocale>;
 }
 
@@ -262,7 +218,59 @@ export interface GlobalSeoField {
   twitterAccount: Maybe<Scalars['String']>;
 }
 
-/** Record of type Images (column) (image_col) */
+export type HomePageModelAboutBlocksField = ImageColRecord | ImageRecord;
+
+export interface HomePageModelAboutField {
+  __typename: 'HomePageModelAboutField';
+  blocks: Array<HomePageModelAboutBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+}
+
+/** Record of type Home Page (home_page) */
+export interface HomePageRecord {
+  __typename: 'HomePageRecord';
+  _allSeoLocales: Maybe<Array<Maybe<SeoFieldMultiLocaleField>>>;
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt: Maybe<Scalars['DateTime']>;
+  _publishedAt: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  about: Maybe<HomePageModelAboutField>;
+  createdAt: Scalars['DateTime'];
+  hero: Maybe<FileField>;
+  id: Scalars['ItemId'];
+  seo: Maybe<SeoField>;
+  updatedAt: Scalars['DateTime'];
+}
+
+
+/** Record of type Home Page (home_page) */
+export interface HomePageRecord_AllSeoLocalesArgs {
+  fallbackLocales: InputMaybe<Array<SiteLocale>>;
+  locale: InputMaybe<SiteLocale>;
+}
+
+
+/** Record of type Home Page (home_page) */
+export interface HomePageRecord_SeoMetaTagsArgs {
+  locale: InputMaybe<SiteLocale>;
+}
+
+
+/** Record of type Home Page (home_page) */
+export interface HomePageRecordSeoArgs {
+  fallbackLocales: InputMaybe<Array<SiteLocale>>;
+  locale: InputMaybe<SiteLocale>;
+}
+
+/** Record of type Gallery side-by-side (image_col) */
 export interface ImageColRecord {
   __typename: 'ImageColRecord';
   _createdAt: Scalars['DateTime'];
@@ -283,7 +291,7 @@ export interface ImageColRecord {
 }
 
 
-/** Record of type Images (column) (image_col) */
+/** Record of type Gallery side-by-side (image_col) */
 export interface ImageColRecord_SeoMetaTagsArgs {
   locale: InputMaybe<SiteLocale>;
 }
@@ -1682,10 +1690,30 @@ export enum ItemStatus {
   updated = 'updated'
 }
 
+export interface JsonFieldMultiLocaleField {
+  __typename: 'JsonFieldMultiLocaleField';
+  locale: Maybe<SiteLocale>;
+  value: Maybe<Scalars['JsonField']>;
+}
+
 /** Specifies how to filter JSON fields */
 export interface JsonFilter {
   /** Filter records with the specified field defined (i.e. with any value) or not */
   exists: InputMaybe<Scalars['BooleanType']>;
+}
+
+/** Specifies how to filter Multiple-links fields */
+export interface LinksFilter {
+  /** Filter records linked to all of the specified records. The specified values must be Record IDs */
+  allIn: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+  /** Filter records linked to at least one of the specified records. The specified values must be Record IDs */
+  anyIn: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+  /** Search for records with an exact match. The specified values must be Record IDs */
+  eq: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records not linked to any of the specified records. The specified values must be Record IDs */
+  notIn: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
 }
 
 /** Specifies how to filter by locale */
@@ -1728,12 +1756,32 @@ export interface PositionFilter {
   neq: InputMaybe<Scalars['IntType']>;
 }
 
-export type ProjectModelContentField = ImageColRecord | ImageRecord | TextRecord;
+export type ProjectModelContentBlocksField = ImageColRecord | ImageRecord;
 
-export interface ProjectModelContentFieldListListNonNullMultiLocaleField {
-  __typename: 'ProjectModelContentFieldListListNonNullMultiLocaleField';
+export interface ProjectModelContentField {
+  __typename: 'ProjectModelContentField';
+  blocks: Array<ProjectModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+}
+
+export interface ProjectModelContentFieldMultiLocaleField {
+  __typename: 'ProjectModelContentFieldMultiLocaleField';
   locale: Maybe<SiteLocale>;
-  value: Array<ProjectModelContentField>;
+  value: Maybe<ProjectModelContentField>;
+}
+
+export interface ProjectModelDescriptionField {
+  __typename: 'ProjectModelDescriptionField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+}
+
+export interface ProjectModelDescriptionFieldMultiLocaleField {
+  __typename: 'ProjectModelDescriptionFieldMultiLocaleField';
+  locale: Maybe<SiteLocale>;
+  value: Maybe<ProjectModelDescriptionField>;
 }
 
 export interface ProjectModelFilter {
@@ -1747,12 +1795,13 @@ export interface ProjectModelFilter {
   _status: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt: InputMaybe<PublishedAtFilter>;
   _updatedAt: InputMaybe<UpdatedAtFilter>;
-  aside: InputMaybe<JsonFilter>;
+  content: InputMaybe<StructuredTextFilter>;
   createdAt: InputMaybe<CreatedAtFilter>;
-  description: InputMaybe<TextFilter>;
+  description: InputMaybe<StructuredTextFilter>;
   id: InputMaybe<ItemIdFilter>;
   keywords: InputMaybe<JsonFilter>;
   position: InputMaybe<PositionFilter>;
+  relatedProjects: InputMaybe<LinksFilter>;
   seo: InputMaybe<SeoFilter>;
   slug: InputMaybe<SlugFilter>;
   thumbnail: InputMaybe<FileFilter>;
@@ -1792,8 +1841,9 @@ export enum ProjectModelOrderBy {
 /** Record of type Project (project) */
 export interface ProjectRecord {
   __typename: 'ProjectRecord';
-  _allContentLocales: Maybe<Array<Maybe<ProjectModelContentFieldListListNonNullMultiLocaleField>>>;
-  _allDescriptionLocales: Maybe<Array<Maybe<StringMultiLocaleField>>>;
+  _allContentLocales: Maybe<Array<Maybe<ProjectModelContentFieldMultiLocaleField>>>;
+  _allDescriptionLocales: Maybe<Array<Maybe<ProjectModelDescriptionFieldMultiLocaleField>>>;
+  _allKeywordsLocales: Maybe<Array<Maybe<JsonFieldMultiLocaleField>>>;
   _allSeoLocales: Maybe<Array<Maybe<SeoFieldMultiLocaleField>>>;
   _allTitleLocales: Maybe<Array<Maybe<StringMultiLocaleField>>>;
   _createdAt: Scalars['DateTime'];
@@ -1808,13 +1858,13 @@ export interface ProjectRecord {
   _status: ItemStatus;
   _unpublishingScheduledAt: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  aside: Maybe<Scalars['JsonField']>;
-  content: Array<ProjectModelContentField>;
+  content: Maybe<ProjectModelContentField>;
   createdAt: Scalars['DateTime'];
-  description: Maybe<Scalars['String']>;
+  description: Maybe<ProjectModelDescriptionField>;
   id: Scalars['ItemId'];
   keywords: Maybe<Scalars['JsonField']>;
   position: Maybe<Scalars['IntType']>;
+  relatedProjects: Array<ProjectRecord>;
   seo: Maybe<SeoField>;
   slug: Maybe<Scalars['String']>;
   thumbnail: Maybe<FileField>;
@@ -1832,8 +1882,15 @@ export interface ProjectRecord_AllContentLocalesArgs {
 
 /** Record of type Project (project) */
 export interface ProjectRecord_AllDescriptionLocalesArgs {
+  fallbackLocales: InputMaybe<Array<SiteLocale>>;
   locale: InputMaybe<SiteLocale>;
-  markdown: InputMaybe<Scalars['Boolean']>;
+}
+
+
+/** Record of type Project (project) */
+export interface ProjectRecord_AllKeywordsLocalesArgs {
+  fallbackLocales: InputMaybe<Array<SiteLocale>>;
+  locale: InputMaybe<SiteLocale>;
 }
 
 
@@ -1866,8 +1923,15 @@ export interface ProjectRecordContentArgs {
 
 /** Record of type Project (project) */
 export interface ProjectRecordDescriptionArgs {
+  fallbackLocales: InputMaybe<Array<SiteLocale>>;
   locale: InputMaybe<SiteLocale>;
-  markdown: InputMaybe<Scalars['Boolean']>;
+}
+
+
+/** Record of type Project (project) */
+export interface ProjectRecordKeywordsArgs {
+  fallbackLocales: InputMaybe<Array<SiteLocale>>;
+  locale: InputMaybe<SiteLocale>;
 }
 
 
@@ -1917,6 +1981,8 @@ export interface Query {
   allUploads: Array<FileField>;
   /** Returns the single instance record */
   global: Maybe<GlobalRecord>;
+  /** Returns the single instance record */
+  homePage: Maybe<HomePageRecord>;
   /** Returns a specific record */
   project: Maybe<ProjectRecord>;
   /** Returns the single instance record */
@@ -1972,6 +2038,13 @@ export interface QueryAllUploadsArgs {
 
 /** The query root for this schema */
 export interface QueryGlobalArgs {
+  fallbackLocales: InputMaybe<Array<SiteLocale>>;
+  locale: InputMaybe<SiteLocale>;
+}
+
+
+/** The query root for this schema */
+export interface QueryHomePageArgs {
   fallbackLocales: InputMaybe<Array<SiteLocale>>;
   locale: InputMaybe<SiteLocale>;
 }
@@ -2134,6 +2207,18 @@ export interface StringMultiLocaleField {
   value: Maybe<Scalars['String']>;
 }
 
+/** Specifies how to filter Structured Text fields */
+export interface StructuredTextFilter {
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with the specified field set as blank (null or single empty paragraph) */
+  isBlank: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records based on a regular expression */
+  matches: InputMaybe<StringMatchesFilter>;
+  /** Exclude records based on a regular expression */
+  notMatches: InputMaybe<StringMatchesFilter>;
+}
+
 export interface Tag {
   __typename: 'Tag';
   attributes: Maybe<Scalars['MetaTagAttributes']>;
@@ -2141,12 +2226,29 @@ export interface Tag {
   tag: Scalars['String'];
 }
 
+export type TermsConditionsPageModelContentBlocksField = ImageColRecord | ImageRecord;
+
+export interface TermsConditionsPageModelContentField {
+  __typename: 'TermsConditionsPageModelContentField';
+  blocks: Array<TermsConditionsPageModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+}
+
+export interface TermsConditionsPageModelContentFieldMultiLocaleField {
+  __typename: 'TermsConditionsPageModelContentFieldMultiLocaleField';
+  locale: Maybe<SiteLocale>;
+  value: Maybe<TermsConditionsPageModelContentField>;
+}
+
 /** Record of type Algemene voorwaarden (terms_conditions_page) */
 export interface TermsConditionsPageRecord {
   __typename: 'TermsConditionsPageRecord';
+  _allContentLocales: Maybe<Array<Maybe<TermsConditionsPageModelContentFieldMultiLocaleField>>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
+  _locales: Array<SiteLocale>;
   _modelApiKey: Scalars['String'];
   _publicationScheduledAt: Maybe<Scalars['DateTime']>;
   _publishedAt: Maybe<Scalars['DateTime']>;
@@ -2155,10 +2257,17 @@ export interface TermsConditionsPageRecord {
   _status: ItemStatus;
   _unpublishingScheduledAt: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  content: Maybe<Scalars['String']>;
+  content: Maybe<TermsConditionsPageModelContentField>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
   updatedAt: Scalars['DateTime'];
+}
+
+
+/** Record of type Algemene voorwaarden (terms_conditions_page) */
+export interface TermsConditionsPageRecord_AllContentLocalesArgs {
+  fallbackLocales: InputMaybe<Array<SiteLocale>>;
+  locale: InputMaybe<SiteLocale>;
 }
 
 
@@ -2170,51 +2279,8 @@ export interface TermsConditionsPageRecord_SeoMetaTagsArgs {
 
 /** Record of type Algemene voorwaarden (terms_conditions_page) */
 export interface TermsConditionsPageRecordContentArgs {
-  markdown: InputMaybe<Scalars['Boolean']>;
-}
-
-/** Specifies how to filter text fields */
-export interface TextFilter {
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists: InputMaybe<Scalars['BooleanType']>;
-  /** Filter records with the specified field set as blank (null or empty string) */
-  isBlank: InputMaybe<Scalars['BooleanType']>;
-  /** Filter records based on a regular expression */
-  matches: InputMaybe<StringMatchesFilter>;
-  /** Exclude records based on a regular expression */
-  notMatches: InputMaybe<StringMatchesFilter>;
-}
-
-/** Record of type Text (text) */
-export interface TextRecord {
-  __typename: 'TextRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt: Maybe<Scalars['DateTime']>;
-  _publishedAt: Maybe<Scalars['DateTime']>;
-  /** SEO meta tags */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt: Maybe<Scalars['DateTime']>;
-  _updatedAt: Scalars['DateTime'];
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ItemId'];
-  text: Maybe<Scalars['String']>;
-  updatedAt: Scalars['DateTime'];
-}
-
-
-/** Record of type Text (text) */
-export interface TextRecord_SeoMetaTagsArgs {
+  fallbackLocales: InputMaybe<Array<SiteLocale>>;
   locale: InputMaybe<SiteLocale>;
-}
-
-
-/** Record of type Text (text) */
-export interface TextRecordTextArgs {
-  markdown: InputMaybe<Scalars['Boolean']>;
 }
 
 /** Specifies how to filter by upload type */
@@ -2591,23 +2657,23 @@ export interface FocalPoint {
 export type ErrorPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ErrorPageQuery = { __typename: 'Query', global: { __typename: 'GlobalRecord', socials: any, hq: string, copyright: string, vat: string, about: string, seo: { __typename: 'SeoField', image: { __typename: 'FileField', url: string } }, hero: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any } } } } };
+export type ErrorPageQuery = { __typename: 'Query', global: { __typename: 'GlobalRecord', socials: any, legal: { __typename: 'GlobalModelLegalField', value: any } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any, mimeType: string } } } } };
 
 export type ResponsiveImageFieldsFragment = { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string };
 
-export type GlobalFieldsFragment = { __typename: 'Query', global: { __typename: 'GlobalRecord', socials: any, hq: string, copyright: string, vat: string, about: string, seo: { __typename: 'SeoField', image: { __typename: 'FileField', url: string } }, hero: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any } } } } };
+export type GlobalFieldsFragment = { __typename: 'Query', global: { __typename: 'GlobalRecord', socials: any, legal: { __typename: 'GlobalModelLegalField', value: any } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any, mimeType: string } } } } };
 
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQuery = { __typename: 'Query', projects: Array<{ __typename: 'ProjectRecord', id: any, keywords: any, slug: string, title: string, description: string, thumbnail: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } } }>, global: { __typename: 'GlobalRecord', socials: any, hq: string, copyright: string, vat: string, about: string, seo: { __typename: 'SeoField', image: { __typename: 'FileField', url: string } }, hero: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any } } } } };
+export type HomePageQuery = { __typename: 'Query', homePage: { __typename: 'HomePageRecord', about: { __typename: 'HomePageModelAboutField', value: any }, hero: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } } }, projects: Array<{ __typename: 'ProjectRecord', id: any, keywords: any, slug: string, title: string, thumbnail: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } }, description: { __typename: 'ProjectModelDescriptionField', value: any } }>, global: { __typename: 'GlobalRecord', socials: any, legal: { __typename: 'GlobalModelLegalField', value: any } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any, mimeType: string } } } } };
 
 export type ProjectPageQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type ProjectPageQuery = { __typename: 'Query', project: { __typename: 'ProjectRecord', id: any, slug: string, description: string, title: string, keywords: any, updatedAt: any, publishedAt: any, content: Array<{ __typename: 'ImageColRecord', id: any, images: Array<{ __typename: 'FileField', id: any, responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } }> } | { __typename: 'ImageRecord', id: any, image: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } } } | { __typename: 'TextRecord', id: any, text: string }>, seo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', url: string } } }, global: { __typename: 'GlobalRecord', socials: any, hq: string, copyright: string, vat: string, about: string, seo: { __typename: 'SeoField', image: { __typename: 'FileField', url: string } }, hero: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any } } } } };
+export type ProjectPageQuery = { __typename: 'Query', project: { __typename: 'ProjectRecord', id: any, slug: string, title: string, keywords: any, updatedAt: any, publishedAt: any, content: { __typename: 'ProjectModelContentField', value: any, blocks: Array<{ __typename: 'ImageColRecord', id: any, images: Array<{ __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } }> } | { __typename: 'ImageRecord', id: any, image: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } } }> }, description: { __typename: 'ProjectModelDescriptionField', value: any }, seo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', url: string } } }, global: { __typename: 'GlobalRecord', socials: any, legal: { __typename: 'GlobalModelLegalField', value: any } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any, mimeType: string } } } } };
 
 export type ProjectSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2617,4 +2683,4 @@ export type ProjectSlugsQuery = { __typename: 'Query', projects: Array<{ __typen
 export type TermsAndConditionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TermsAndConditionsQuery = { __typename: 'Query', page: { __typename: 'TermsConditionsPageRecord', content: string, _updatedAt: any }, global: { __typename: 'GlobalRecord', socials: any, hq: string, copyright: string, vat: string, about: string, seo: { __typename: 'SeoField', image: { __typename: 'FileField', url: string } }, hero: { __typename: 'FileField', responsiveImage: { __typename: 'ResponsiveImage', srcSet: string, webpSrcSet: string, sizes: string, src: string, width: any, height: any, alt: string, title: string, aspectRatio: any, base64: string } } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any } } } } };
+export type TermsAndConditionsQuery = { __typename: 'Query', page: { __typename: 'TermsConditionsPageRecord', _updatedAt: any, content: { __typename: 'TermsConditionsPageModelContentField', value: any } }, global: { __typename: 'GlobalRecord', socials: any, legal: { __typename: 'GlobalModelLegalField', value: any } }, site: { __typename: 'Site', faviconMetaTags: Array<{ __typename: 'Tag', attributes: any, content: string, tag: string }>, globalSeo: { __typename: 'GlobalSeoField', facebookPageUrl: string, siteName: string, titleSuffix: string, twitterAccount: string, fallbackSeo: { __typename: 'SeoField', description: string, title: string, twitterCard: string, image: { __typename: 'FileField', alt: string, height: any, url: string, width: any, mimeType: string } } } } };

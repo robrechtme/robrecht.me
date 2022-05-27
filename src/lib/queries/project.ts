@@ -1,9 +1,10 @@
 import { gql } from 'graphql-tag';
 
-import { GLOBAL_FIELDS } from './fragments';
+import { GLOBAL_FIELDS, RESPONSIVE_IMAGE_FIELDS } from './fragments';
 
 export const PROJECT_PAGE_QUERY = gql`
   ${GLOBAL_FIELDS}
+  ${RESPONSIVE_IMAGE_FIELDS}
   query ProjectPage($slug: String) {
     ...globalFields
     project(filter: { slug: { eq: $slug } }) {
@@ -12,32 +13,31 @@ export const PROJECT_PAGE_QUERY = gql`
       id
       slug
       content {
-        ... on ImageRecord {
-          __typename
-          id
-          image {
-            responsiveImage {
-              ...responsiveImageFields
-            }
-          }
-        }
-        ... on ImageColRecord {
-          __typename
-          id
-          images {
+        value
+        blocks {
+          ... on ImageColRecord {
             id
-            responsiveImage {
-              ...responsiveImageFields
+            __typename
+            images {
+              responsiveImage {
+                ...responsiveImageFields
+              }
             }
           }
-        }
-        ... on TextRecord {
-          __typename
-          id
-          text(markdown: true)
+          ... on ImageRecord {
+            id
+            __typename
+            image {
+              responsiveImage {
+                ...responsiveImageFields
+              }
+            }
+          }
         }
       }
-      description(markdown: true)
+      description {
+        value
+      }
       title
       keywords
       seo {

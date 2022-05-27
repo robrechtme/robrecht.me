@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import parse from 'html-react-parser';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 
 import Logo from 'components/atoms/icons/logo';
 import Back from 'components/atoms/icons/right-arrow';
+import StructuredText from 'components/organisms/StructuredText';
 import { query } from 'lib/datocms';
-import { TERMS_AND_CONDITIONS_QUERY } from 'lib/queries/termsAndConditions';
+import { TERMS_AND_CONDITIONS_QUERY } from 'lib/queries';
 import { TermsAndConditionsQuery } from 'lib/types';
 
 const TermsAndConditionsPage = ({ page }: TermsAndConditionsQuery) => (
@@ -42,7 +42,9 @@ const TermsAndConditionsPage = ({ page }: TermsAndConditionsQuery) => (
           })}
         </time>
       </small>
-      <div className='prose mt-8 '>{parse(page.content)}</div>
+      <div className='prose mt-8'>
+        <StructuredText data={page.content} />
+      </div>
     </motion.article>
   </>
 );

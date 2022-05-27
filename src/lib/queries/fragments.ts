@@ -16,24 +16,12 @@ export const RESPONSIVE_IMAGE_FIELDS = gql`
 `;
 
 export const GLOBAL_FIELDS = gql`
-  ${RESPONSIVE_IMAGE_FIELDS}
   fragment globalFields on Query {
     global {
       socials
-      hq(markdown: true)
-      copyright
-      vat
-      seo {
-        image {
-          url
-        }
+      legal {
+        value
       }
-      hero {
-        responsiveImage(imgixParams: { ar: "1:1", fit: crop }) {
-          ...responsiveImageFields
-        }
-      }
-      about(markdown: true)
     }
     site: _site {
       faviconMetaTags {
@@ -55,6 +43,7 @@ export const GLOBAL_FIELDS = gql`
             height
             url
             width
+            mimeType
           }
         }
       }

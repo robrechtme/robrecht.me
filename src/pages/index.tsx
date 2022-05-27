@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import parse from 'html-react-parser';
 import { GetStaticProps } from 'next';
 import { LogoJsonLd, SocialProfileJsonLd } from 'next-seo';
 
@@ -10,12 +9,13 @@ import Logo from 'components/atoms/icons/logo';
 import Socials from 'components/molecules/Socials';
 import ContactForm from 'components/organisms/ContactForm';
 import Portfolio from 'components/organisms/Portfolio';
+import StructuredText from 'components/organisms/StructuredText';
 import { query } from 'lib/datocms';
 import { HOME_PAGE_QUERY } from 'lib/queries';
 import { HomePageQuery, ProjectRecord } from 'lib/types';
 import { useFadeIn } from 'styles/animations';
 
-const Home = ({ projects = [], global }: HomePageQuery) => {
+const Home = ({ projects = [], global, homePage }: HomePageQuery) => {
   const fadeIn = useFadeIn();
   return (
     <>
@@ -55,7 +55,7 @@ const Home = ({ projects = [], global }: HomePageQuery) => {
             clipPath: 'url(#svgPath)',
           }}
         >
-          <Img data={global.hero.responsiveImage} className='w-full h-full' />
+          <Img data={homePage.hero.responsiveImage} className='w-full h-full' />
         </motion.div>
         <motion.div {...fadeIn({ delay: 0.8 })}>
           <Logo className='h-8 mb-4' />
@@ -79,7 +79,7 @@ const Home = ({ projects = [], global }: HomePageQuery) => {
           {...fadeIn({ delay: 1 })}
           className='prose text-gray-300 md:pb-10 min-h-16 w-4/5 sm:w-3/4 md:w-1/2 relative'
         >
-          {global.about && parse(global.about)}
+          <StructuredText data={homePage.about} />
         </motion.div>
       </header>
       <Portfolio projects={projects as ProjectRecord[]} />
