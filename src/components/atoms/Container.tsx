@@ -1,21 +1,12 @@
-import c from 'classnames';
 import { ReactNode } from 'react';
 
 interface Props {
-  dark?: boolean;
   children: ReactNode;
 }
 
-const Container = ({ children, dark = false }: Props) => (
-  <div
-    className={c(
-      dark
-        ? 'bg-gray-900 text-gray-50 overflow-x-hidden'
-        : 'text-gray-900 bg-gray-50',
-      'w-full min-h-screen flex justify-center'
-    )}
-  >
-    <div className='max-w-screen-xl w-full px-4 sm:px-8 flex flex-col justify-between'>
+const Container = ({ children }: Props) => (
+  <div className='flex min-h-screen w-full justify-center bg-gray-50 text-gray-900 dark:overflow-x-hidden dark:bg-gray-900 dark:text-gray-50'>
+    <div className='flex w-full max-w-screen-xl flex-col justify-between px-4 sm:px-8'>
       {children}
     </div>
   </div>

@@ -1,5 +1,5 @@
 import { ErrorMessage, Field } from 'formik';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 interface Props {
   name: string;
@@ -18,7 +18,7 @@ const Input = ({
   component,
 }: Props) => (
   <div className='mb-4 flex flex-col'>
-    <label htmlFor={name} className='block text-xs mb-2 text-gray-400'>
+    <label htmlFor={name} className='mb-2 block text-xs text-gray-400'>
       {label}
     </label>
     <Field
@@ -27,7 +27,7 @@ const Input = ({
       name={name}
       placeholder={placeholder}
       component={component}
-      className='bg-gray-800 border-none w-full flex-1 placeholder-gray-600 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-500'
+      className='w-full flex-1 border-none bg-gray-800 px-2 py-1 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500'
     />
     <ErrorMessage
       name={name}

@@ -15,7 +15,7 @@ const SubmitButton = ({ isSubmitting, isSubmitted }: Props) => {
     <button
       type='submit'
       disabled={isSubmitting}
-      className='bg-gray-700 w-full py-2 uppercase font-semibold text-sm tracking-wide flex items-center justify-center h-10 focus:outline-none focus-within:ring-blue-500 focus:ring ring-gray-500'
+      className='flex h-10 w-full items-center justify-center bg-gray-700 py-2 text-sm font-semibold uppercase tracking-wide ring-gray-500 focus-within:ring-blue-500 focus:outline-none focus:ring'
     >
       <motion.span
         className='absolute'

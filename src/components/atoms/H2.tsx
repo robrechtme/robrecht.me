@@ -1,5 +1,5 @@
 import c from 'classnames';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 interface Props {
   className?: string;
@@ -10,7 +10,7 @@ interface Props {
 const Header = ({ as: As = 'h1', children, className }: Props) => (
   <As
     className={c(
-      'max-w-full font-semibold relative leading-loose inline-block',
+      'relative inline-block max-w-full font-semibold leading-loose',
       className
     )}
   >

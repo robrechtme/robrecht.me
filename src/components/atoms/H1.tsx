@@ -1,7 +1,11 @@
-type Props = React.ComponentPropsWithoutRef<'h1'>;
+import { ReactNode } from 'react';
+
+interface Props {
+  children: ReactNode;
+}
 
 const H1 = ({ children }: Props) => (
-  <h1 className='font-extrabold text-4xl sm:text-5xl md:text-6xl mb-1'>
+  <h1 className='mb-1 text-4xl font-extrabold sm:text-5xl md:text-6xl'>
     {children}
   </h1>
 );

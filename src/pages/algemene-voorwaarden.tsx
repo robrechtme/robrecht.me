@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 
@@ -13,22 +12,19 @@ const TermsAndConditionsPage = ({ page }: TermsAndConditionsQuery) => (
   <>
     <Link href='/'>
       <a>
-        <Logo className='h-6 mb-2 mt-8' />
+        <Logo className='mb-2 mt-8 h-6' />
       </a>
     </Link>
-    <motion.article
-      className='my-4 relative'
-      exit={{ transition: { duration: 0 } }}
-    >
+    <article className='relative my-4'>
       <Link href='/'>
         <a
           aria-label='Vorige'
-          className='hidden 2xl:block opacity-25 hover:opacity-50 transition hover:bg-gray-200 rounded-full mt-1 absolute top-0 -left-12'
+          className='absolute top-0 -left-12 mt-1 hidden rounded-full opacity-25 transition hover:bg-gray-200 hover:opacity-50 2xl:block'
         >
-          <Back className=' h-6 w-6 m-1 transform rotate-180 -left-full' />
+          <Back className=' -left-full m-1 h-6 w-6 rotate-180 transform' />
         </a>
       </Link>
-      <h1 className='font-bold text-3xl'>Algemene voorwaarden</h1>
+      <h1 className='text-3xl font-bold'>Algemene voorwaarden</h1>
       <small>
         Laatst gewijzigd op{' '}
         <time>
@@ -45,7 +41,7 @@ const TermsAndConditionsPage = ({ page }: TermsAndConditionsQuery) => (
       <div className='prose mt-8'>
         <StructuredText data={page.content} />
       </div>
-    </motion.article>
+    </article>
   </>
 );
 
