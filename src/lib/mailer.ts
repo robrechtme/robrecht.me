@@ -4,7 +4,8 @@ import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 import { createHTML } from './template';
 
-const FOOTER = 'Robrecht Meersman, Vosselarestraat 61, 9850 Landegem<br>BTW BE 0761 397 342';
+const FOOTER =
+  'Robrecht Meersman, Vosselarestraat 61, 9850 Landegem<br>BTW BE 0761 397 342';
 
 const conf: SMTPTransport.Options = {
   host: process.env.SMTP_SERVER,
@@ -16,14 +17,19 @@ const conf: SMTPTransport.Options = {
   },
 };
 
-// create reusable transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport(conf);
 
-const mailer = ({ senderMail, name, text }) => {
+interface Params {
+  senderMail: string;
+  name: string;
+  text: string;
+}
+
+const mailer = ({ senderMail, name, text }: Params) => {
   const from = `Robrecht Meersman <${process.env.SMTP_RECIPIENT}>`;
   const content = `Hi ${name}<br><br>Bedankt voor uw bericht! Ik probeer u zo spoedig mogelijk te antwoorden.<br><br>Bericht:<br><span style="font-style: italic">${text.replace(
     /\\n/g,
-    '<br/>',
+    '<br/>'
   )}</span><br><br>Tot binnenkort<br><br>Robrecht Meersman`;
   const message = {
     from,

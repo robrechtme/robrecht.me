@@ -1,12 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import React from 'react';
 
 const PageTransition = () => {
   const shouldReduceMotion = useReducedMotion();
   return (
     <motion.div
-      key="pageTransition"
-      className="fixed bg-gray-50 inset-0 z-10"
+      key='pageTransition'
+      className='fixed bg-gray-50 inset-0 z-10'
       initial={{
         clipPath: 'circle(0% at 0 100%)',
       }}

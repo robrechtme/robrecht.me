@@ -25,7 +25,7 @@ export const useFadeIn = () => {
         ease: 'easeOut',
       },
     }),
-    [shouldReduceMotion],
+    [shouldReduceMotion]
   );
 
   return fadeIn;

@@ -1,0 +1,20 @@
+overwrite: true
+schema:
+  - ${DATOCMS_ENDPOINT}:
+      headers:
+        Authorization: 'Bearer ${DATOCMS_API_TOKEN}'
+documents: 'src/lib/queries/*'
+generates:
+  src/lib/types.ts:
+    plugins:
+      - add:
+          content: '/* eslint-disable */'
+      - 'typescript'
+      - 'typescript-operations'
+    config:
+      declarationKind: 'interface'
+      maybeValue: T
+      avoidOptionals: true
+      nonOptionalTypename: true
+      namingConvention:
+        enumValues: keep

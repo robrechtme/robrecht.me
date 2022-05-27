@@ -4,6 +4,7 @@ declare global {
       // Server-side secrets
       DATOCMS_API_TOKEN: string;
       DATOCMS_PREVIEW_SECRET: string;
+      DATOCMS_ENDPOINT: string;
       RECAPTCHA_SERVER_KEY: string;
       SMTP_PASSWORD: string;
       SMTP_RECIPIENT: string;
@@ -11,7 +12,6 @@ declare global {
       SMTP_USERNAME: string;
 
       // Client-side variables
-      NEXT_PUBLIC_GA_TRACKING_ID: string;
       NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY: string;
       NEXT_PUBLIC_URL: string;
     }

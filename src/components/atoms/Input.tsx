@@ -1,17 +1,24 @@
 import { ErrorMessage, Field } from 'formik';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-type Props = {
+interface Props {
   name: string;
   component?: string;
   label: string;
   placeholder?: string;
   type?: string;
-};
+  children?: ReactNode;
+}
 
-const Input: React.FC<Props> = ({ name, label, placeholder, type = 'text', component }) => (
-  <div className="mb-4 flex flex-col">
-    <label htmlFor={name} className="block text-xs mb-2 text-gray-400">
+const Input = ({
+  name,
+  label,
+  placeholder,
+  type = 'text',
+  component,
+}: Props) => (
+  <div className='mb-4 flex flex-col'>
+    <label htmlFor={name} className='block text-xs mb-2 text-gray-400'>
       {label}
     </label>
     <Field
@@ -20,9 +27,13 @@ const Input: React.FC<Props> = ({ name, label, placeholder, type = 'text', compo
       name={name}
       placeholder={placeholder}
       component={component}
-      className="bg-gray-800 border-none w-full flex-1 placeholder-gray-600 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-500"
+      className='bg-gray-800 border-none w-full flex-1 placeholder-gray-600 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-500'
     />
-    <ErrorMessage name={name} component="div" className="text-sm text-red-400" />
+    <ErrorMessage
+      name={name}
+      component='div'
+      className='text-sm text-red-400'
+    />
   </div>
 );
 

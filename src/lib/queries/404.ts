@@ -1,10 +1,10 @@
-import { Global } from '../types';
+import { gql } from 'graphql-tag';
 
-import { GLOBAL_PART } from './fragments';
+import { GLOBAL_FIELDS } from './fragments';
 
-export type ErrorPage = Global;
-
-export const ERROR_PAGE = `
-query ErrorPage {
-  ${GLOBAL_PART}
-}`;
+export const ERROR_PAGE_QUERY = gql`
+  ${GLOBAL_FIELDS}
+  query ErrorPage {
+    ...globalFields
+  }
+`;
