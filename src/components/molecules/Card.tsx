@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion';
-import parse from 'html-react-parser';
 import Link from 'next/link';
 
 import Header from '../atoms/H2';
 import Img from '../atoms/Image';
 import NavLink from '../atoms/NavLink';
+import StructuredText from '../organisms/StructuredText';
 
-import { ProjectRecord } from 'lib/types';
+import { HomePageQuery } from 'lib/types';
 
 interface Props {
-  project: ProjectRecord;
+  project: HomePageQuery['projects'][number];
 }
 
 const Card = ({
@@ -43,7 +43,7 @@ const Card = ({
           )}
           {description && (
             <div className='my-4 md:max-h-24 md:line-clamp-3 overflow-hidden flex-1 prose'>
-              {parse(description)}
+              <StructuredText data={description} />
             </div>
           )}
         </div>

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import parse, { domToReact } from 'html-react-parser';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ArticleJsonLd, NextSeo } from 'next-seo';
 import Link from 'next/link';
@@ -7,13 +6,13 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
 import Header from '../components/atoms/H2';
-import Content from '../components/organisms/Blocks';
 import { escapeDoubleQuotes } from '../util/string';
 
 import Logo from 'components/atoms/icons/logo';
 import Back from 'components/atoms/icons/right-arrow';
+import StructuredText from 'components/organisms/StructuredText';
 import { query } from 'lib/datocms';
-import { PROJECT_PAGE_QUERY, PROJECT_SLUGS_QUERY } from 'lib/queries/project';
+import { PROJECT_PAGE_QUERY, PROJECT_SLUGS_QUERY } from 'lib/queries';
 import { ProjectPageQuery, ProjectSlugsQuery } from 'lib/types';
 
 const Project = ({ project }: ProjectPageQuery) => {
@@ -71,19 +70,13 @@ const Project = ({ project }: ProjectPageQuery) => {
                   </p>
                 )}
               </div>
-              <div className='mt-4 '>
-                <p className='prose text-gray-900'>
-                  {parse(project.description, {
-                    // @ts-expect-error change to StructuredText
-                    replace: ({ name, children }) =>
-                      name === 'p' && <>{domToReact(children)}</>,
-                  })}
-                </p>
+              <div className='mt-4 prose text-gray-900'>
+                <StructuredText data={project.description} />
               </div>
             </header>
           </div>
           <motion.main
-            className='flex-1 sm:py-8'
+            className='flex-1 sm:py-8 prose'
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 1] }}
             transition={{
@@ -92,7 +85,7 @@ const Project = ({ project }: ProjectPageQuery) => {
               delay: 0.5,
             }}
           >
-            <Content content={project.content} />
+            <StructuredText data={project.content} />
           </motion.main>
         </article>
       )}

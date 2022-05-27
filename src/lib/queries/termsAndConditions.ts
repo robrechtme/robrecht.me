@@ -7,7 +7,9 @@ export const TERMS_AND_CONDITIONS_QUERY = gql`
   query TermsAndConditions {
     ...globalFields
     page: termsConditionsPage {
-      content(markdown: true)
+      content {
+        value
+      }
       _updatedAt
     }
   }
