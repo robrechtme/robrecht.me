@@ -53,8 +53,8 @@ const ContactForm = () => {
           <Form>
             <div className='flex flex-col sm:flex-row sm:space-x-2'>
               <div className='flex-1'>
-                <h1 className='font-bold text-4xl text-gray-100'>Hit me up</h1>
-                <h2 className='font-light text-lg text-gray-200 mb-4'>
+                <h1 className='text-4xl font-bold text-gray-100'>Hit me up</h1>
+                <h2 className='mb-4 text-lg font-light text-gray-200'>
                   Vertel me over jouw project!
                 </h2>
                 <Input name='name' placeholder='Naam' label='Naam' />
@@ -65,10 +65,10 @@ const ContactForm = () => {
                   type='email'
                 />
               </div>
-              <div className='flex-1 flex flex-col mb-4'>
+              <div className='mb-4 flex flex-1 flex-col'>
                 <label
                   htmlFor='message'
-                  className='block text-xs mb-2 text-gray-400'
+                  className='mb-2 block text-xs text-gray-400'
                 >
                   Bericht
                 </label>
@@ -78,28 +78,28 @@ const ContactForm = () => {
                   name='message'
                   placeholder='Bericht'
                   component='textarea'
-                  className='bg-gray-800 border-none w-full flex-1 min-h-32 placeholder-gray-600 px-2 py-1 focus:outline-none focus:ring-2 ring-gray-500'
+                  className='min-h-32 w-full flex-1 border-none bg-gray-800 px-2 py-1 placeholder-gray-600 ring-gray-500 focus:outline-none focus:ring-2'
                 />
                 <ErrorMessage
                   name='message'
                   component='div'
-                  className='text-sm text-red-400 mb-2'
+                  className='mb-2 text-sm text-red-400'
                 />
               </div>
             </div>
-            <div className='flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2 mb-24'>
-              <div className='flex-1 text-xs text-gray-600 prose max-w-full'>
+            <div className='mb-24 flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2'>
+              <div className='prose max-w-full flex-1 text-xs text-gray-600'>
                 This site is protected by reCAPTCHA and the Google{' '}
                 <a
                   href='https://policies.google.com/privacy'
-                  className='focus:outline-none focus-within:ring-2 ring-blue-500'
+                  className='ring-blue-500 focus-within:ring-2 focus:outline-none'
                 >
                   Privacy Policy
                 </a>{' '}
                 and{' '}
                 <a
                   href='https://policies.google.com/terms'
-                  className='focus:outline-none focus-within:ring-2 ring-blue-500'
+                  className='ring-blue-500 focus-within:ring-2 focus:outline-none'
                 >
                   Terms of Service
                 </a>{' '}

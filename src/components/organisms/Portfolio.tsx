@@ -1,5 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Header from '../atoms/H2';
 import NavLink from '../atoms/NavLink';
@@ -14,9 +13,9 @@ interface Props {
 const Portfolio = ({ projects }: Props) => {
   const [activeFilter, setActiveFilter] = useState('Alle');
   return (
-    <main className='mb-20 bg-gray-50 text-gray-900 rounded-sm shadow-2xl md:mx-8 lg:mx-24 py-12 px-4 sm:px-8 md:px-12 relative'>
+    <main className='relative mb-20 rounded-sm bg-gray-50 py-12 px-4 text-gray-900 shadow-2xl sm:px-8 md:mx-8 md:px-12 lg:mx-24'>
       <Header className='mb-4 text-3xl'>Portfolio</Header>
-      <div className='flex flex-col items-start mb-8'>
+      <div className='mb-8 flex flex-col items-start'>
         {['Alle', 'Web', 'Logo'].map(name => (
           <button
             type='button'
@@ -24,24 +23,22 @@ const Portfolio = ({ projects }: Props) => {
             aria-checked={activeFilter === name}
             key={name}
             onClick={() => setActiveFilter(name)}
-            className='mb-2 focus-custom'
+            className='focus-custom mb-2'
           >
             <NavLink active={activeFilter === name}>{name}</NavLink>
           </button>
         ))}
       </div>
-      <motion.div className='flex flex-col divide-y divide-gray-300 border-t border-gray-300'>
-        <AnimatePresence>
-          {projects
-            .filter(
-              ({ keywords }) =>
-                activeFilter === 'Alle' || keywords.includes(activeFilter)
-            )
-            .map(project => (
-              <Card key={project.id} project={project} />
-            ))}
-        </AnimatePresence>
-      </motion.div>
+      <div className='flex flex-col divide-y divide-gray-300 border-t border-gray-300'>
+        {projects
+          .filter(
+            ({ keywords }) =>
+              activeFilter === 'Alle' || keywords.includes(activeFilter)
+          )
+          .map(project => (
+            <Card key={project.id} project={project} />
+          ))}
+      </div>
     </main>
   );
 };

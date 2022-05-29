@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 
@@ -8,20 +7,20 @@ import { ERROR_PAGE_QUERY } from 'lib/queries';
 import { ErrorPageQuery } from 'lib/types';
 
 const ErrorPage = () => (
-  <motion.div className='my-32' exit={{ transition: { duration: 0 } }}>
-    <h1 className='font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight'>
+  <div className='my-32'>
+    <h1 className='text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl'>
       404.
     </h1>
     <h2 className='text-lg sm:text-xl md:text-2xl'>Yikes.</h2>
     <Link href='/'>
-      <a className='group flex items-center mt-8 text-sm'>
-        <Back className='h-6 w-6 m-1 transform rotate-180 opacity-25 group-hover:opacity-50 transition' />
-        <span className='opacity-75 group-hover:opacity-100 transition'>
+      <a className='group mt-8 flex items-center text-sm'>
+        <Back className='m-1 h-6 w-6 rotate-180 transform opacity-25 transition group-hover:opacity-50' />
+        <span className='opacity-75 transition group-hover:opacity-100'>
           Terug naar de homepagina
         </span>
       </a>
     </Link>
-  </motion.div>
+  </div>
 );
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {

@@ -32,7 +32,6 @@ Hi! Welcome to the source code of my personal website. This repo is not really m
 - [Next.js](https://nextjs.org/) - JavaScript framework
 - [Tailwind CSS](https://tailwindcss.com/) - CSS framework
 - [DatoCMS](https://www.datocms.com/) - Headless CMS
-- [Framer Motion](https://www.framer.com/motion/) - React animation framework
 
 <!-- GETTING STARTED -->
 
@@ -42,10 +41,10 @@ To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
-- node@14
+- node@16
 - yarn
+
+If you use [asdf](https://asdf-vm.com/) you can run `asdf install`.
 
 ### Installation
 
@@ -54,7 +53,7 @@ This is an example of how to list things you need to use the software and how to
    git clone https://github.com/robrechtme/robrecht.me.git
    cd robrecht.me
    ```
-2. Install NPM packages
+2. Install dependencies
    ```sh
    yarn
    ```

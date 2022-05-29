@@ -34,7 +34,7 @@ const StructuredText = <
         return (
           <div
             key={record.id}
-            className='not-prose flex flex-row my-4 space-x-4'
+            className='not-prose my-4 flex flex-row space-x-4'
           >
             {record.images.map(image => (
               <div key={image.id} className='flex-1'>

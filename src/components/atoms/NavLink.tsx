@@ -1,5 +1,5 @@
 import c from 'classnames';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 interface Props {
   active?: boolean;
@@ -11,7 +11,7 @@ const NavLink = ({ children, active = false }: Props) => (
   <span
     className={c(
       !active && 'text-gray-500 hover:text-gray-600',
-      'navLink uppercase tracking-wide font-semibold'
+      'navLink font-semibold uppercase tracking-wide'
     )}
   >
     {children}
