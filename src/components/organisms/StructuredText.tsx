@@ -23,11 +23,13 @@ const StructuredText = <
     renderBlock={({ record }) => {
       if (isImageRecord(record)) {
         return (
-          <Img
-            key={record.id}
-            data={record.image.responsiveImage}
-            className='not-prose w-full shadow-xl'
-          />
+          <div className='not-prose'>
+            <Img
+              key={record.id}
+              data={record.image.responsiveImage}
+              className='w-full shadow-xl'
+            />
+          </div>
         );
       }
       if (isImageColRecord(record)) {
@@ -38,7 +40,7 @@ const StructuredText = <
           >
             {record.images.map(image => (
               <div key={image.id} className='flex-1'>
-                <Img data={image.responsiveImage} className=' shadow-xl' />
+                <Img data={image.responsiveImage} className='shadow-xl' />
               </div>
             ))}
           </div>

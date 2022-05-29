@@ -15,12 +15,12 @@ const Card = ({
   project: { slug, thumbnail, title, keywords, description },
 }: Props) => (
   <article className='group flex max-w-full flex-col items-center py-8 px-2 md:flex-row md:space-x-8'>
-    <div className='max-h-64 flex-shrink-0 overflow-hidden md:w-80'>
+    <div className='flex-shrink-0 overflow-hidden md:w-80'>
       <Link href={`/${slug}`}>
-        <a tabIndex={-1}>
+        <a aria-hidden='true'>
           <Img
             data={thumbnail.responsiveImage}
-            className='transform duration-300 ease-in-out group-hover:scale-105 motion-reduce:transform-none'
+            className='max-h-64 transform object-cover duration-300 ease-in-out group-hover:scale-105 motion-reduce:transform-none'
           />
         </a>
       </Link>

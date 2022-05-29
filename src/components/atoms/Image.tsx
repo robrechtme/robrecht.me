@@ -1,13 +1,23 @@
-import { Image, ResponsiveImageType } from 'react-datocms';
+import { ResponsiveImageFieldsFragment } from 'lib/types';
 
 interface Props {
-  data: ResponsiveImageType;
+  data: ResponsiveImageFieldsFragment;
   className?: string;
 }
 
 const Img = ({ data, className }: Props) => (
-  // eslint-disable-next-line jsx-a11y/alt-text
-  <Image data={data} className={className} />
+  <picture>
+    <source srcSet={data.webpSrcSet} sizes={data.sizes} type='image/webp' />
+    <source srcSet={data.srcSet} sizes={data.sizes} />
+    <img
+      width={data.width}
+      height={data.height}
+      className={className}
+      src={data.src}
+      alt={data.alt}
+      title={data.title}
+    />
+  </picture>
 );
 
 export default Img;
