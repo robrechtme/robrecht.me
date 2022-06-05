@@ -48,6 +48,20 @@ export const PROJECT_PAGE_QUERY = gql`
           url
         }
       }
+      relatedProjects {
+        id
+        keywords
+        slug
+        title
+        thumbnail {
+          responsiveImage(imgixParams: { fit: crop, ar: "80:56" }) {
+            ...responsiveImageFields
+          }
+        }
+        description {
+          value
+        }
+      }
     }
   }
 `;

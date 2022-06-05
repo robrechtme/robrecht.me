@@ -2,11 +2,12 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { ArticleJsonLd, NextSeo } from 'next-seo';
 import Link from 'next/link';
 
-import Header from '../components/atoms/H2';
 import { escapeDoubleQuotes } from '../util/string';
 
+import Header from 'components/atoms/H2';
 import Logo from 'components/atoms/icons/logo';
 import Back from 'components/atoms/icons/right-arrow';
+import RelatedProjects from 'components/organisms/RelatedProjects';
 import StructuredText from 'components/organisms/StructuredText';
 import { query } from 'lib/datocms';
 import { PROJECT_PAGE_QUERY, PROJECT_SLUGS_QUERY } from 'lib/queries';
@@ -68,6 +69,7 @@ const Project = ({ project }: ProjectPageQuery) => (
         <StructuredText data={project.content} />
       </main>
     </article>
+    <RelatedProjects relatedProjects={project.relatedProjects} />
   </>
 );
 
