@@ -2,8 +2,8 @@ import { GetStaticProps } from 'next';
 import { LogoJsonLd, SocialProfileJsonLd } from 'next-seo';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
-import H1 from 'components/atoms/H1';
 import Img from 'components/atoms/Image';
+import Text from 'components/atoms/Text';
 import Logo from 'components/atoms/icons/logo';
 import Socials from 'components/molecules/Socials';
 import ContactForm from 'components/organisms/ContactForm';
@@ -52,12 +52,16 @@ const Home = ({ projects = [], global, homePage }: HomePageQuery) => (
       <div className='z-10 animate-fade-up animation-delay-800 motion-reduce:animate-fade'>
         <Logo className='mb-4 h-8' />
       </div>
-      <div className='my-24 flex flex-col items-start space-y-4'>
+      <h1 className='my-24 flex flex-col items-start space-y-4'>
         <div className='animate-fade-up animation-delay-400 motion-reduce:animate-fade'>
-          <H1>Web Developer.</H1>
+          <Text as='span' variant='heading1'>
+            Web Developer.
+          </Text>
         </div>
         <div className='animate-fade-up animation-delay-600 motion-reduce:animate-fade'>
-          <H1>Graphic Designer.</H1>
+          <Text as='span' variant='heading1'>
+            Graphic Designer.
+          </Text>
         </div>
         <div className='animate-fade-up animation-delay-800 motion-reduce:animate-fade'>
           <Socials
@@ -66,7 +70,7 @@ const Home = ({ projects = [], global, homePage }: HomePageQuery) => (
             socials={global.socials}
           />
         </div>
-      </div>
+      </h1>
       <div className='min-h-16 prose relative w-4/5 animate-fade-up text-gray-300 animation-delay-1000 motion-reduce:animate-fade sm:w-3/4 md:w-1/2 md:pb-10'>
         <StructuredText data={homePage.about} />
       </div>
