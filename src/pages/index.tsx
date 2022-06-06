@@ -1,6 +1,5 @@
 import { GetStaticProps } from 'next';
 import { LogoJsonLd, SocialProfileJsonLd } from 'next-seo';
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import Img from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
@@ -14,9 +13,7 @@ import { HOME_PAGE_QUERY } from 'lib/queries';
 import { HomePageQuery, ProjectRecord } from 'lib/types';
 
 const Home = ({ projects = [], global, homePage }: HomePageQuery) => (
-  <GoogleReCaptchaProvider
-    reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY}
-  >
+  <>
     <SocialProfileJsonLd
       type='Person'
       name='Robrecht Meersman'
@@ -75,9 +72,11 @@ const Home = ({ projects = [], global, homePage }: HomePageQuery) => (
         <StructuredText data={homePage.about} />
       </div>
     </header>
-    <Portfolio projects={projects as ProjectRecord[]} />
-    <ContactForm />
-  </GoogleReCaptchaProvider>
+    <main>
+      <Portfolio projects={projects as ProjectRecord[]} />
+      <ContactForm />
+    </main>
+  </>
 );
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {

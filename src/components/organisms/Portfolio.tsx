@@ -30,7 +30,7 @@ const Portfolio = ({ projects }: Props) => {
     );
 
   return (
-    <main className='relative mb-20 rounded-sm bg-gray-50 py-12 px-4 text-gray-900 shadow-2xl sm:px-8 md:mx-8 md:px-12 lg:mx-24'>
+    <section className='relative mb-20 rounded-sm bg-gray-50 py-12 px-4 text-gray-900 shadow-2xl sm:px-8 md:mx-8 md:px-12 lg:mx-24'>
       <Text as='h2' variant='heading2' className='mb-4 text-3xl'>
         Portfolio
       </Text>
@@ -61,7 +61,7 @@ const Portfolio = ({ projects }: Props) => {
             <Card key={project.id} project={project} />
           ))}
       </div>
-    </main>
+    </section>
   );
 };
 
