@@ -27,7 +27,7 @@ const Card = ({
     </div>
     <div className='flex min-w-0 flex-col justify-between self-stretch'>
       <div>
-        <Text variant='heading2' className='mb-2 truncate text-2xl'>
+        <Text as='h1' variant='heading2' className='mb-2 truncate text-2xl'>
           {title}
         </Text>
         <div className='flex flex-1 flex-col'>

@@ -17,8 +17,6 @@
   "dependencies": {
     "classnames": "2.3.1",
     "focus-visible": "5.2.0",
-    "formik": "2.2.9",
-    "framer-motion": "6.3.4",
     "graphql": "16.5.0",
     "graphql-tag": "2.12.6",
     "next": "12.1.6",
@@ -27,11 +25,7 @@
     "react": "18.1.0",
     "react-datocms": "3.0.12",
     "react-dom": "18.1.0",
-    "react-google-recaptcha-v3": "1.9.7",
-    "react-use": "17.4.0",
-    "stylelint": "14.8.5",
-    "tailwindcss-animation-delay": "1.0.7",
-    "yup": "0.32.11"
+    "tailwindcss-animation-delay": "1.0.7"
   },
   "devDependencies": {
     "@graphql-codegen/add": "3.1.1",
@@ -44,13 +38,13 @@
     "@types/graphql": "14.5.0",
     "@types/node": "^16.x",
     "@types/nodemailer": "6.4.4",
-    "@types/react": "18.0.9",
+    "@types/react": "18.0.12",
     "@types/react-dom": "18.0.5",
-    "@typescript-eslint/eslint-plugin": "5.26.0",
-    "@typescript-eslint/parser": "5.26.0",
+    "@typescript-eslint/eslint-plugin": "5.27.0",
+    "@typescript-eslint/parser": "5.27.0",
     "autoprefixer": "10.4.7",
     "dotenv-cli": "5.1.0",
-    "eslint": "8.16.0",
+    "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
     "eslint-import-resolver-typescript": "2.7.1",
     "eslint-plugin-import": "2.26.0",
@@ -58,10 +52,9 @@
     "next-sitemap": "3.0.5",
     "postcss": "8.4.14",
     "postcss-focus-visible": "6.0.4",
-    "postcss-preset-env": "7.6.0",
+    "postcss-preset-env": "7.7.1",
     "prettier": "2.6.2",
     "prettier-plugin-tailwindcss": "0.1.11",
-    "stylelint-config-recommended": "7.0.0",
     "tailwindcss": "3.0.24",
     "typescript": "4.7.3"
   }

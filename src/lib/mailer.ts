@@ -40,7 +40,6 @@ const mailer = ({ senderMail, name, text }: Params) => {
     html: createHTML(content, FOOTER),
     replyTo: from,
   } as Mail.Options;
-  console.log(conf);
   console.log('📫 Sending mail...');
   return new Promise((resolve, reject) => {
     transporter.sendMail(message, (error, info) => {
