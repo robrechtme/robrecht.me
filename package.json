@@ -25,6 +25,7 @@
     "react": "18.1.0",
     "react-datocms": "3.0.12",
     "react-dom": "18.1.0",
+    "react-google-recaptcha-v3": "1.9.8",
     "tailwindcss-animation-delay": "1.0.7"
   },
   "devDependencies": {

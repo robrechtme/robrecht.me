@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import { LogoJsonLd, SocialProfileJsonLd } from 'next-seo';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import Img from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
@@ -13,7 +14,9 @@ import { HOME_PAGE_QUERY } from 'lib/queries';
 import { HomePageQuery, ProjectRecord } from 'lib/types';
 
 const Home = ({ projects = [], global, homePage }: HomePageQuery) => (
-  <>
+  <GoogleReCaptchaProvider
+    reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY}
+  >
     <SocialProfileJsonLd
       type='Person'
       name='Robrecht Meersman'
@@ -36,7 +39,7 @@ const Home = ({ projects = [], global, homePage }: HomePageQuery) => (
     </svg>
     <header className='header relative z-0 flex flex-col justify-between py-8'>
       <div
-        className='absolute bottom-0 right-0 z-[-1] w-full min-w-96 max-w-screen-lg translate-x-28 -translate-y-1/4 transform animate-fade bg-gray-800 animation-delay-500 sm:translate-y-0 sm:translate-x-1/3 md:translate-y-24 md:translate-x-1/3'
+        className='absolute bottom-0 right-0 z-[-1] w-full min-w-[28rem] max-w-screen-lg translate-x-28 -translate-y-1/4 transform animate-fade bg-gray-800 animation-delay-500 sm:translate-y-0 sm:translate-x-1/3 md:translate-y-24 md:translate-x-1/3'
         style={{
           clipPath: 'url(#svgPath)',
         }}
@@ -68,7 +71,7 @@ const Home = ({ projects = [], global, homePage }: HomePageQuery) => (
           />
         </div>
       </h1>
-      <div className='min-h-16 prose relative w-4/5 animate-fade-up text-gray-300 animation-delay-1000 motion-reduce:animate-fade sm:w-3/4 md:w-1/2 md:pb-10'>
+      <div className='prose relative min-h-[4rem] w-4/5 animate-fade-up text-gray-300 animation-delay-1000 motion-reduce:animate-fade sm:w-3/4 md:w-1/2 md:pb-10'>
         <StructuredText data={homePage.about} />
       </div>
     </header>
@@ -76,7 +79,7 @@ const Home = ({ projects = [], global, homePage }: HomePageQuery) => (
       <Portfolio projects={projects as ProjectRecord[]} />
       <ContactForm />
     </main>
-  </>
+  </GoogleReCaptchaProvider>
 );
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {

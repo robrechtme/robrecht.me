@@ -1,4 +1,5 @@
 import { FormEventHandler, useState } from 'react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import Input from '../atoms/Input';
 import SubmitButton from '../molecules/SubmitButton';
@@ -9,27 +10,32 @@ type State = 'initial' | 'submitting' | 'success' | 'error';
 
 const ContactForm = () => {
   const [state, setState] = useState<State>('initial');
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
     setState('submitting');
     try {
+      const recaptcha = await executeRecaptcha?.('contact_form');
+      const formData = Object.fromEntries(
+        new FormData(event.target as HTMLFormElement)
+      );
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(
-          Object.fromEntries(
-            new FormData(event.currentTarget as HTMLFormElement)
-          )
-        ),
+        body: JSON.stringify({
+          recaptcha,
+          ...formData,
+        }),
       });
       if (!res.ok) {
         throw Error(res.statusText);
       }
       setState('success');
-    } catch {
+    } catch (e) {
+      console.error(e);
       setState('error');
     }
   };
@@ -38,11 +44,12 @@ const ContactForm = () => {
     <section className='mb-16'>
       {state === 'success' ? (
         <>
-          <h2 className='mb-8 text-4xl font-bold text-gray-100'>Bedankt!</h2>
-          <p>Je bericht is succesvol verstuurd.</p>
+          <h2 className='mb-8 text-4xl font-bold text-gray-100'>Tot zo!</h2>
+          <p>Je bericht is succesvol verstuurd!</p>
           <p>
-            Je ontvangt nog een bevestigingsmail en dan hoor je binnenkort van
-            mij.
+            Je ontvangt nog een{' '}
+            <b className='font-semibold'>bevestigingsmail</b> en je hoort zo
+            snel mogelijk van mij terug.
           </p>
           <p>
             <small>
@@ -84,14 +91,35 @@ const ContactForm = () => {
                 id='message'
                 name='message'
                 placeholder='Bericht'
-                className='mb-2 min-h-32 w-full flex-1 border-none bg-gray-800 px-2 py-1 placeholder-gray-600 ring-gray-500 focus:outline-none focus:ring-2'
+                className='min-h-[8rem] w-full flex-1 border-none bg-gray-800 px-2 py-1 placeholder-gray-600 ring-gray-500 focus:outline-none focus:ring-2'
               />
+            </div>
+          </div>
+          <div className='mb-4 flex flex-col-reverse gap-2 sm:flex-row'>
+            <div className='prose max-w-full flex-1 text-xs text-gray-500'>
+              This site is protected by reCAPTCHA and the Google{' '}
+              <a
+                href='https://policies.google.com/privacy'
+                className='ring-blue-500 focus-within:ring-2 focus:outline-none'
+              >
+                Privacy Policy
+              </a>{' '}
+              and{' '}
+              <a
+                href='https://policies.google.com/terms'
+                className='ring-blue-500 focus-within:ring-2 focus:outline-none'
+              >
+                Terms of Service
+              </a>{' '}
+              apply.
+            </div>
+            <div className='flex-1'>
               <SubmitButton loading={state === 'submitting'} />
             </div>
           </div>
           {state === 'error' && (
-            <div className='flex items-center gap-4'>
-              <ExclamationIcon className='h-8 w-8 flex-shrink-0 rounded-full bg-red-400 p-1 text-red-900' />
+            <div className='flex items-center gap-4 border border-red-800 border-opacity-50 bg-red-900/20 px-1 py-2'>
+              <ExclamationIcon className='h-8 w-8 flex-shrink-0 text-red-800' />
               <p className='text-sm' aria-live='assertive'>
                 Er is iets misgelopen tijdens het verzenden van je bericht. Je
                 kan opnieuw proberen of me rechtstreeks contacteren op{' '}

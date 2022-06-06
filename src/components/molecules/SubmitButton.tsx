@@ -8,7 +8,7 @@ const SubmitButton = ({ loading }: Props) => (
   <button
     type='submit'
     disabled={loading}
-    className='flex h-8 w-full items-center justify-center bg-gray-700 py-2 text-sm font-semibold uppercase tracking-wider ring-gray-500 focus-within:ring-blue-500 focus:outline-none focus:ring'
+    className='flex h-10 w-full items-center justify-center bg-gray-700 py-2 text-sm font-semibold uppercase tracking-wider ring-gray-500 focus-within:ring-blue-500 focus:outline-none focus:ring'
   >
     {loading ? (
       <div className='absolute'>

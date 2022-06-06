@@ -35,18 +35,9 @@ module.exports = {
       colors: {
         gray: colors.zinc,
       },
-      minWidth: {
-        96: '28rem',
-      },
-      borderWidth: {
-        3: '3px',
-      },
       spacing: {
         0.5: '0.125rem',
         '1/2': '50%',
-      },
-      minHeight: {
-        32: '8rem',
       },
       inset: {
         8: '2rem',
