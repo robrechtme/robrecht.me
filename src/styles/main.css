@@ -40,18 +40,6 @@
     max-height: 1080px;
   }
 
-  .H2:before {
-    content: '';
-    @apply h-3;
-    @apply absolute;
-    @apply bottom-0;
-    @apply w-1/3;
-    min-width: 1.5em;
-    @apply border-b-3;
-    @apply border-current;
-    @apply left-0;
-  }
-
   .focus-custom {
     @apply focus:outline-none;
     @apply focus-visible:ring-2;

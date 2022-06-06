@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-import Header from '../atoms/H2';
 import Img from '../atoms/Image';
 import NavLink from '../atoms/NavLink';
 import StructuredText from '../organisms/StructuredText';
 
+import Text from 'components/atoms/Text';
 import { HomePageQuery } from 'lib/types';
 
 interface Props {
@@ -27,7 +27,9 @@ const Card = ({
     </div>
     <div className='flex min-w-0 flex-col justify-between self-stretch'>
       <div>
-        <Header className='mb-2 truncate text-2xl'>{title}</Header>
+        <Text variant='heading2' className='mb-2 truncate text-2xl'>
+          {title}
+        </Text>
         <div className='flex flex-1 flex-col'>
           {keywords && (
             <p className='text-sm uppercase tracking-wide opacity-50'>
