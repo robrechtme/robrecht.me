@@ -19,7 +19,7 @@ const Project = ({ project }: ProjectPageQuery) => {
   return (
     <>
       <header>
-        <Link href='/'>
+        <Link href='/' title='Home'>
           <Logo className='mb-2 mt-8 h-6' />
         </Link>
       </header>

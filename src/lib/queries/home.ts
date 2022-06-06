@@ -23,7 +23,7 @@ export const HOME_PAGE_QUERY = gql`
       slug
       title
       thumbnail {
-        responsiveImage(imgixParams: { fit: crop, ar: "80:56" }) {
+        responsiveImage(imgixParams: { fit: crop, ar: "80:56", w: 600 }) {
           ...responsiveImageFields
         }
       }

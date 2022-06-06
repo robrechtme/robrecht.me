@@ -19,7 +19,7 @@ export const PROJECT_PAGE_QUERY = gql`
             id
             __typename
             images {
-              responsiveImage {
+              responsiveImage(imgixParams: { w: 700 }) {
                 ...responsiveImageFields
               }
             }
@@ -28,7 +28,7 @@ export const PROJECT_PAGE_QUERY = gql`
             id
             __typename
             image {
-              responsiveImage {
+              responsiveImage(imgixParams: { w: 700 }) {
                 ...responsiveImageFields
               }
             }
@@ -54,7 +54,7 @@ export const PROJECT_PAGE_QUERY = gql`
         slug
         title
         thumbnail {
-          responsiveImage(imgixParams: { fit: crop, ar: "80:56" }) {
+          responsiveImage(imgixParams: { fit: crop, ar: "80:56", w: 600 }) {
             ...responsiveImageFields
           }
         }

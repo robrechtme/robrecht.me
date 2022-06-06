@@ -17,7 +17,7 @@ const Card = ({
   <article className='group flex max-w-full flex-col items-center py-8 px-2 md:flex-row md:space-x-8'>
     <div className='flex-shrink-0 overflow-hidden md:w-80'>
       <Link href={`/${slug}`}>
-        <a aria-hidden='true'>
+        <a aria-hidden='true' tabIndex={-1}>
           <Img
             data={thumbnail.responsiveImage}
             className='max-h-64 transform object-cover duration-300 ease-in-out group-hover:scale-105 motion-reduce:transform-none'

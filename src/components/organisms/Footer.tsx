@@ -12,7 +12,7 @@ const Footer = ({ global }: Props) => (
   <footer className='my-2'>
     <div className='flex flex-wrap items-center justify-between'>
       <Link href='/'>
-        <a className='mb-2'>
+        <a className='mb-2' title='Home'>
           <Logo className='h-6' />
         </a>
       </Link>
