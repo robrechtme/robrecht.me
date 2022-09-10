@@ -20,7 +20,9 @@ const Project = ({ project }: ProjectPageQuery) => {
     <>
       <header>
         <Link href='/' title='Home'>
-          <Logo className='mb-2 mt-8 h-6' />
+          <a>
+            <Logo className='mb-2 mt-8 h-6' />
+          </a>
         </Link>
       </header>
       <article className='flex flex-col items-start space-y-8 sm:flex-row sm:space-x-8 sm:space-y-0 2xl:-ml-12'>
@@ -50,7 +52,7 @@ const Project = ({ project }: ProjectPageQuery) => {
             aria-label='Vorige'
             className='mt-1 hidden rounded-full opacity-25 transition hover:bg-gray-200 hover:opacity-50 2xl:block'
           >
-            <Back className=' -left-full m-1 h-6 w-6 rotate-180 transform' />
+            <Back className='-left-full m-1 h-6 w-6 rotate-180 transform' />
           </button>
           <section className='animate-fade animation-delay-300'>
             <Text variant='heading2' className='mb-2 text-xl'>
