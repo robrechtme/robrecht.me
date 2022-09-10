@@ -9,7 +9,9 @@ import Container from '../components/atoms/Container';
 import DatoDefaultSeo from '../components/atoms/DefaultSeo';
 import Footer from '../components/organisms/Footer';
 
-const App = ({ Component, pageProps }: AppProps) => (
+import { PageProps } from 'types';
+
+const App = ({ Component, pageProps }: AppProps<PageProps>) => (
   <>
     <Head>
       {pageProps.site?.faviconMetaTags &&
